@@ -22,9 +22,9 @@ def send_email():
         server = smtplib.SMTP_SSL('smtp.yandex.ru', 465)
         server.login(sender_email, password)
         server.send_message(msg)
-        print("Письмо отправлено!")
+        result_label.config(text="Письмо отправлено!")
     except Exception as e:
-        print(f"Ошибка: {e}")
+        result_label.config(text=f"Ошибка: {e}")
     finally:
         if server:
             server.quit()
@@ -55,6 +55,6 @@ body_text.grid(row=4, column=1, sticky=W)
 
 Button(text='Отправить письмо', command=send_email).grid(row=5, column=1, sticky=W) #Создание кнопки
 
-result_label =  label(text='') # метка
+result_label =  Label(text='')
 result_label.grid(row=6, column=1, sticky=W)
 window.mainloop()
